@@ -9,17 +9,6 @@
 #define SYM     4
 #define FUN     5
 
-// #define SEMI_Q P
-// #define SEMI_C SEMI
-// #define COLN_Q LSFT(KC_P)
-// #define COLN_C KC_COLN
-
-// OS-Mapped Colemak
-&caps_word {
-    continue-list = <UNDERSCORE BACKSPACE DELETE SEMI>;
-    also-mod-list = <SEMI>;
-    break-list = <P>;
-};
 
 / {
       behaviors {
