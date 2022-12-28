@@ -9,6 +9,27 @@
 #define SYM     4
 #define FUN     5
 
+/* Combo helper, to DRY up combo definitions
+ * usage: COMBO(vol_up, &kp C_VOL_UP,  9 19) */
+#define COMBO(name, keypress, keypos) \
+    combo_##name {                    \
+        layers = <0>;                 \
+        timeout-ms = <25>;            \
+        bindings = <keypress>;        \
+        key-positions = <keypos>;     \
+    };
+
+/* Macro helper to DRY up simple keypress macros
+ * usage: MACRO(dir_up, &kp DOT &kp DOT &kp FSLH) */
+#define MACRO(name, keys)                  \
+    name: name##_macro {                   \
+        label = #name;                     \
+        compatible = "zmk,behavior-macro"; \
+        #binding-cells = <0>;              \
+        wait-ms = <1>;                     \
+        tap-ms = <1>;                      \
+        bindings = <keys>;                 \
+    };
 
 / {
       behaviors {
@@ -31,7 +52,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <220>;
-            quick-tap-ms = <150>; // the greater the value, the harder it will be to invoke the hold behavior
+            quick-tap-ms = <140>; // the greater the value, the harder it will be to invoke the hold behavior
             global-quick-tap;
             bindings = <&kp>, <&kp>;
         };
@@ -47,6 +68,30 @@
         };
 
     };
+
+    /* Combo key positions
+    0  1  2  3  4         5  6  7  8  9
+    10 11 12 13 14        15 16 17 18 19
+    20 21 22 23 24        25 26 27 28 29
+             30 31 32  33 34 35         */
+    combos {
+        compatible = "zmk,combos";
+        COMBO(rf_arr, &rf_arr, 6 7)
+        COMBO(rs_arr, &rs_arr, 7 8)
+        COMBO(lf_arr, &lf_arr, 2 3)
+        COMBO(ls_arr, &ls_arr, 1 2)
+        COMBO(ex_pipe, &ex_pipe, 22 23)
+        COMBO(eex_tag, &eex_tag, 27 28)
+    };
+
+    macros {
+        MACRO(rf_arr, &kp EQUAL &kp GT)
+        MACRO(rs_arr, &kp MINUS &kp GT)
+        MACRO(lf_arr, &kp LT &kp EQUAL)
+        MACRO(ls_arr, &kp LT &kp MINUS)
+        MACRO(ex_pipe, &kp PIPE &kp GT &kp SPACE)
+        MACRO(eex_tag, &kp LT &kp PRCNT &kp EQUAL &kp SPACE &kp SPACE &kp PRCNT &kp GT &kp LEFT &kp LEFT &kp LEFT)
+	};
 
     keymap {
         compatible = "zmk,keymap";
