@@ -39,9 +39,9 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HOME_ROW_MODS";
             #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <250>;
-            quick-tap-ms = <65>; // the greater the value, the harder it will be to invoke the hold behavior
+            flavor = "tap-preferred";
+            tapping-term-ms = <180>;
+            quick-tap-ms = <50>; // the greater the value, the harder it will be to invoke the hold behavior
             global-quick-tap;
             bindings = <&kp>, <&kp>;
         };
@@ -52,7 +52,7 @@
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <250>;
-            quick-tap-ms = <100>; // the greater the value, the harder it will be to invoke the hold behavior
+            quick-tap-ms = <150>; // the greater the value, the harder it will be to invoke the hold behavior
             global-quick-tap;
             bindings = <&kp>, <&kp>;
         };
