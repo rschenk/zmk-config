@@ -11,10 +11,18 @@
 
 /* Combo helper, to DRY up combo definitions
  * usage: COMBO(vol_up, &kp C_VOL_UP,  9 19) */
-#define COMBO(name, keypress, keypos) \
+#define FAST_COMBO(name, keypress, keypos) \
     combo_##name {                    \
         layers = <0>;                 \
         timeout-ms = <25>;            \
+        bindings = <keypress>;        \
+        key-positions = <keypos>;     \
+    };
+
+#define SLOW_COMBO(name, keypress, keypos) \
+    combo_##name {                    \
+        layers = <0>;                 \
+        timeout-ms = <75>;            \
         bindings = <keypress>;        \
         key-positions = <keypos>;     \
     };
@@ -76,12 +84,14 @@
              30 31 32  33 34 35         */
     combos {
         compatible = "zmk,combos";
-        COMBO(rf_arr, &rf_arr, 6 7)
-        COMBO(rs_arr, &rs_arr, 7 8)
-        COMBO(lf_arr, &lf_arr, 2 3)
-        COMBO(ls_arr, &ls_arr, 1 2)
-        COMBO(ex_pipe, &ex_pipe, 22 23)
-        COMBO(eex_tag, &eex_tag, 27 28)
+        FAST_COMBO(rf_arr, &rf_arr, 6 7)
+        FAST_COMBO(rs_arr, &rs_arr, 7 8)
+        FAST_COMBO(lf_arr, &lf_arr, 2 3)
+        FAST_COMBO(ls_arr, &ls_arr, 1 2)
+        FAST_COMBO(ex_pipe, &ex_pipe, 22 23)
+        FAST_COMBO(eex_tag, &eex_tag, 27 28)
+        SLOW_COMBO(esc, &kp ESC, 10 19)
+        SLOW_COMBO(capswrd, &caps_word, 20 29)
     };
 
     macros {
@@ -91,7 +101,7 @@
         MACRO(ls_arr, &kp LT &kp MINUS)
         MACRO(ex_pipe, &kp PIPE &kp GT &kp SPACE)
         MACRO(eex_tag, &kp LT &kp PRCNT &kp EQUAL &kp SPACE &kp SPACE &kp PRCNT &kp GT &kp LEFT &kp LEFT &kp LEFT)
-	};
+    };
 
     keymap {
         compatible = "zmk,keymap";
@@ -108,7 +118,7 @@
         nav_layer {
             bindings = <
     &bootloader &trans  &trans    &trans      &trans   &trans   &trans    &trans  &trans    &trans
-    &kp LCTRL &kp LALT  &kp LCMD  &kp LSHIFT  &trans   &kp LEFT &kp DOWN  &kp UP  &kp RIGHT &caps_word
+    &kp LCTRL &kp LALT  &kp LCMD  &kp LSHIFT  &trans   &kp LEFT &kp DOWN  &kp UP  &kp RIGHT &kp CAPSLOCK
     &trans    &trans    &trans    &trans      &trans   &trans   &trans    &trans  &trans    &trans
                         &trans    &trans      &trans   &kp RET  &kp BSPC  &kp DEL
             >;
