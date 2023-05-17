@@ -90,7 +90,6 @@
         FAST_COMBO(ls_arr, &ls_arr, 1 2)
         FAST_COMBO(ex_pipe, &ex_pipe, 22 23)
         FAST_COMBO(eex_tag, &eex_tag, 27 28)
-        SLOW_COMBO(esc, &kp ESC, 10 19)
         SLOW_COMBO(capswrd, &caps_word, 20 29)
     };
 
