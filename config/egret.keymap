@@ -39,6 +39,11 @@
         bindings = <keys>;                 \
     };
 
+/* This is for snoyer's capslock based caps_word */
+&caps_word {
+  disable-on-keys = <SPACE TAB ENTER PERIOD>;
+};
+
 / {
       behaviors {
         /* Shift-key homerow mod is fundamentally different than the others
@@ -101,7 +106,7 @@
         MACRO(ex_pipe, &kp PIPE &kp GT &kp SPACE)
         MACRO(eex_tag, &kp LT &kp PRCNT &kp EQUAL &kp SPACE &kp SPACE &kp PRCNT &kp GT &kp LEFT &kp LEFT &kp LEFT)
     };
-
+ 
     keymap {
         compatible = "zmk,keymap";
 
