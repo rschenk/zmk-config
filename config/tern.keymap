@@ -95,9 +95,9 @@
                 26 27  28 29            */
     combos {
         compatible = "zmk,combos";
-        q   { key-positions = <0 1>;   bindings = <&kp _Q>;    layers = <DEF_L>; timeout-ms = <70>; };
-        v   { key-positions = <20 21>; bindings = <&kp _V>;    layers = <DEF_L>; timeout-ms = <65>; };
-        slsh{ key-positions = <23 24>; bindings = <&kp FSLH>; layers = <DEF_L>; timeout-ms = <99>; };
+        q { key-positions = <0 1>;   bindings = <&kp _Q>; layers = <DEF_L>; timeout-ms = <70>; };
+        v { key-positions = <20 21>; bindings = <&kp _V>; layers = <DEF_L>; timeout-ms = <65>; };
+        j { key-positions = <19 20>; bindings = <&kp _J>; layers = <DEF_L>; timeout-ms = <99>; };
 
         esc_l { key-positions = <9 10>; bindings = <&kp ESC>;  layers = <DEF_L>; global-quick-tap-ms = <150>; };
 
@@ -132,7 +132,7 @@
             bindings = <
                               &kp _W       &kp _F        &kp _P          &kp _B        &kp _K           &kp _L          &kp _U       &kp _Y
                 &hml LCTRL _A &hml LALT _R &hml LCMD _S  &hsl LSHFT _T   &kp _G        &kp _M           &hsr RSHFT _N   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _O
-                &kp _Z        &kp _X       &kp _C        &kp _D                                         &kp _H          &kp COMMA    &kp DOT      &kp _J
+                &kp _Z        &kp _X       &kp _C        &kp _D                                         &kp _H          &kp COMMA    &kp DOT      &kp FSLH
                                                          &lt NAV_L SPACE &lt MED_L TAB &lt SYM_L SQT    &lt NUM_L BSPC
             >;
         };
