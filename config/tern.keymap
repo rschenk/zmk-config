@@ -106,6 +106,13 @@
         bslh { key-positions = <20 21>; bindings = <&kp BSLH>; layers = <NUM_L>; global-quick-tap-ms = <150>; };
         pipe { key-positions = <20 21>; bindings = <&kp PIPE>; layers = <SYM_L>; global-quick-tap-ms = <150>; };
 
+        vlbkt { key-positions = <0 9>;  bindings = <&kp LBKT>; };
+        vlbrc { key-positions = <1 10>; bindings = <&kp LBRC>; };
+        vlpar { key-positions = <2 11>; bindings = <&kp LPAR>; };
+        vrpar { key-positions = <5 14>; bindings = <&kp RPAR>; };
+        vrbrc { key-positions = <6 15>; bindings = <&kp RBRC>; };
+        vrbkt { key-positions = <7 16>; bindings = <&kp RBKT>; };
+
         cw { key-positions = <18 25>; bindings = <&caps_word>; layers = <DEF_L>; timeout-ms = <75>; global-quick-tap-ms = <150>; };
 
         lf_arr { key-positions = <5 6>;   bindings = <&lf_arr>; layers = <SYM_L>; };
