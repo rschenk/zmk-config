@@ -101,16 +101,14 @@
 
         esc_l { key-positions = <9 10>; bindings = <&kp ESC>;  layers = <DEF_L>; global-quick-tap-ms = <150>; };
 
-        lbkt { key-positions = <0 1>;   bindings = <&kp LBKT>; layers = <NUM_L>; global-quick-tap-ms = <150>; };
-        lbrc { key-positions = <0 1>;   bindings = <&kp LBRC>; layers = <SYM_L>; global-quick-tap-ms = <150>; };
         bslh { key-positions = <20 21>; bindings = <&kp BSLH>; layers = <NUM_L>; global-quick-tap-ms = <150>; };
         pipe { key-positions = <20 21>; bindings = <&kp PIPE>; layers = <SYM_L>; global-quick-tap-ms = <150>; };
 
         vlbkt { key-positions = <0 9>;  bindings = <&kp LBKT>; };
-        vlbrc { key-positions = <1 10>; bindings = <&kp LBRC>; };
-        vlpar { key-positions = <2 11>; bindings = <&kp LPAR>; };
-        vrpar { key-positions = <5 14>; bindings = <&kp RPAR>; };
-        vrbrc { key-positions = <6 15>; bindings = <&kp RBRC>; };
+        vlpar { key-positions = <1 10>; bindings = <&kp LPAR>; };
+        vlbrc { key-positions = <2 11>; bindings = <&kp LBRC>; };
+        vrbrc { key-positions = <5 14>; bindings = <&kp RBRC>; };
+        vrpar { key-positions = <6 15>; bindings = <&kp RPAR>; };
         vrbkt { key-positions = <7 16>; bindings = <&kp RBKT>; };
 
         cw { key-positions = <18 25>; bindings = <&caps_word>; layers = <DEF_L>; timeout-ms = <75>; global-quick-tap-ms = <150>; };
