@@ -12,6 +12,9 @@
 #include <zmk/events/split_peripheral_status_changed.h>
 #include <zmk/events/battery_state_changed.h>
 
+#include <zmk/led_indicators.h>
+#include <zmk/events/led_indicator_changed.h>
+
 #include <zephyr/logging/log.h>
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
@@ -106,6 +109,31 @@ static int led_battery_listener_cb(const zmk_event_t *eh) {
 ZMK_LISTENER(led_battery_listener, led_battery_listener_cb);
 ZMK_SUBSCRIPTION(led_battery_listener, zmk_battery_state_changed);
 #endif // IS_ENABLED(CONFIG_ZMK_BATTERY_REPORTING)
+
+static int led_capslock_listener_cb(const zmk_event_t *eh) {
+    enum color_t capslock_color = LED_MAGENTA;
+
+    zmk_led_indicators_flags_t flags = zmk_led_indicators_get_current_flags();
+
+    if (flags & ZMK_LED_INDICATORS_CAPSLOCK_BIT) {
+        // turn appropriate LEDs on
+        for (uint8_t pos = 0; pos < 3; pos++) {
+            if (BIT(pos) & capslock_color) {
+                led_on(led_dev, rgb_idx[pos]);
+            }
+        }
+    } else {
+        for (uint8_t pos = 0; pos < 3; pos++) {
+          if (BIT(pos) & capslock_color) {
+            led_off(led_dev, rgb_idx[pos]);
+          }
+        }
+    }
+
+    return 0;
+}
+ZMK_LISTENER(led_indicators_listener, led_capslock_listener_cb);
+ZMK_SUBSCRIPTION(led_indicators_listener, zmk_led_indicators_changed);
 
 extern void led_thread(void *d0, void *d1, void *d2) {
     ARG_UNUSED(d0);
