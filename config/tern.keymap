@@ -21,10 +21,11 @@
 #define KEYS_T 26 27 28 29
 
 #define DEF_L 0
-#define NAV_L 1
-#define NUM_L 2
-#define SYM_L 3
-#define MED_L 4
+#define BRD_L 1
+#define NAV_L 2
+#define NUM_L 3
+#define SYM_L 4
+#define MED_L 5
 
 &lt { flavor = "balanced"; };
 
@@ -95,11 +96,15 @@
                 26 27  28 29            */
     combos {
         compatible = "zmk,combos";
-        v { key-positions = <0 1>; bindings = <&kp _V>; layers = <DEF_L>; timeout-ms = <99>; };
+        v { key-positions = <0 1>; bindings = <&kp _V>; layers = <DEF_L >; timeout-ms = <99>; };
         q { key-positions = <1 2>;   bindings = <&kp _Q>; layers = <DEF_L>; timeout-ms = <99>; };
         j { key-positions = <19 20>; bindings = <&kp _J>; layers = <DEF_L>; timeout-ms = <99>; };
 
-        esc_l { key-positions = <9 10>; bindings = <&kp ESC>;  layers = <DEF_L>; global-quick-tap-ms = <150>; };
+        brd_v { key-positions = <0 1>; bindings = <&kp _V>; layers = <BRD_L>; timeout-ms = <99>; };
+        brd_q { key-positions = <1 2>;   bindings = <&kp _Q>; layers = <BRD_L>; timeout-ms = <99>; };
+        brd_z { key-positions = <19 20>; bindings = <&kp _Z>; layers = <BRD_L>; timeout-ms = <99>; };
+
+        esc_l { key-positions = <9 10>; bindings = <&kp ESC>;  layers = <DEF_L BRD_L>; global-quick-tap-ms = <150>; };
 
         bslh { key-positions = <20 21>; bindings = <&kp BSLH>; layers = <NUM_L>; global-quick-tap-ms = <150>; };
         pipe { key-positions = <20 21>; bindings = <&kp PIPE>; layers = <SYM_L>; global-quick-tap-ms = <150>; };
@@ -111,7 +116,7 @@
         vrpar { key-positions = <6 15>; bindings = <&kp RPAR>; };
         vrbkt { key-positions = <7 16>; bindings = <&kp RBKT>; };
 
-        cw { key-positions = <18 25>; bindings = <&caps_word>; layers = <DEF_L>; timeout-ms = <75>; global-quick-tap-ms = <150>; };
+        cw { key-positions = <18 25>; bindings = <&caps_word>; layers = <DEF_L BRD_L>; timeout-ms = <75>; global-quick-tap-ms = <150>; };
 
         lf_arr { key-positions = <5 6>;   bindings = <&lf_arr>; layers = <SYM_L>; };
         ls_arr { key-positions = <6 7>;   bindings = <&ls_arr>; layers = <SYM_L>; };
@@ -142,10 +147,20 @@
             >;
         };
 
+        bird_layer {
+            label = "Bird";
+            bindings = <
+                              &kp _C       &kp _L        &kp _F          &kp _P        &kp _K           &kp _Y          &kp _O       &kp _U
+                &hml LCTRL _R &hml LALT _S &hml LCMD _N  &hsl LSHFT _T   &kp _B        &kp _J           &hsr RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
+                &kp _X        &kp _W       &kp _M        &kp _G                                         &kp _D          &kp COMMA    &kp DOT      &kp FSLH
+                                                         &lt NAV_L SPACE &lt MED_L TAB &lt SYM_L SQT    &lt NUM_L BSPC
+            >;
+        };
+
         nav_layer {
             label = "Nav";
             bindings = <
-                           &trans     &trans      &trans          &bootloader  &trans           &trans         &trans   &trans
+                          &bootloader &to DEF_L   &to BRD_L       &trans       &trans           &trans         &trans   &trans
                 &kp LCTRL  &kp LALT   &kp LCMD    &kp LSHFT       &trans       &kp LEFT         &kp DOWN       &kp UP   &kp RIGHT  &trans
                 &kp LG(_Z) &kp LG(_X) &kp LG(_C)  &kp LG(_V)                                    &trans         &trans   &trans     &trans
                                                   &trans          &trans       &trans           &kp RET
