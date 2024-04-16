@@ -1,3 +1,0 @@
-From https://github.com/caksoylar/zmk-config/tree/main/config/boards/shields/rgbled_widget
-Commit 7cf65bd
-
