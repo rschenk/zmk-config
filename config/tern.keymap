@@ -101,6 +101,8 @@
 
         cw  { key-positions = <18 25>; bindings = <&kp CAPSLOCK>; layers = <DEF_L>; timeout-ms = <100>; };
 
+        esc { key-positions = <9 10 11>; bindings = <&kp ESC>; layers = <DEF_L>; };
+
         lf_arr { key-positions = <5 6>;   bindings = <&lf_arr>; layers = <NUM_L>; };
         ls_arr { key-positions = <6 7>;   bindings = <&ls_arr>; layers = <NUM_L>; };
         rf_arr { key-positions = <14 15>; bindings = <&rf_arr>; layers = <NUM_L>; };
@@ -135,8 +137,8 @@
 
         nav_layer {
             bindings = <
-                            &trans      &kp _COLON   &kp ESC         &trans       &trans           &trans         &trans   &trans
                 &kp LCTRL   &kp LALT    &kp LCMD     &kp LSHFT       &trans       &kp LEFT         &kp DOWN       &kp UP   &kp RIGHT  &trans
+                            &trans      &kp _COLON   &trans          &trans       &trans           &trans         &trans   &trans
                 &kp LG(_Z)  &kp LG(_X)  &kp LG(_C)   &kp LG(_V)                                    &trans         &trans   &trans     &kp FSLH
                                                      &trans          &trans       &trans           &trans
             >;
