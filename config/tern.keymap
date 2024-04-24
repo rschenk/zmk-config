@@ -137,8 +137,8 @@
 
         nav_layer {
             bindings = <
-                &kp LCTRL   &kp LALT    &kp LCMD     &kp LSHFT       &trans       &kp LEFT         &kp DOWN       &kp UP   &kp RIGHT  &trans
                             &trans      &kp _COLON   &trans          &trans       &trans           &trans         &trans   &trans
+                &kp LCTRL   &kp LALT    &kp LCMD     &hml LSHFT TAB  &trans       &kp LEFT         &kp DOWN       &kp UP   &kp RIGHT  &trans
                 &kp LG(_Z)  &kp LG(_X)  &kp LG(_C)   &kp LG(_V)                                    &trans         &trans   &trans     &kp FSLH
                                                      &trans          &trans       &trans           &trans
             >;
