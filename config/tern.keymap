@@ -102,6 +102,7 @@
         cw  { key-positions = <18 25>; bindings = <&kp CAPSLOCK>; layers = <DEF_L>; timeout-ms = <100>; };
 
         esc { key-positions = <9 10 11>; bindings = <&kp ESC>; layers = <DEF_L>; };
+        ret { key-positions = <14 15 16>; bindings = <&kp RET>; layers = <DEF_L>; };
 
         lf_arr { key-positions = <5 6>;   bindings = <&lf_arr>; layers = <NUM_L>; };
         ls_arr { key-positions = <6 7>;   bindings = <&ls_arr>; layers = <NUM_L>; };
