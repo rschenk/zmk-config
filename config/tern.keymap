@@ -104,6 +104,8 @@
         esc { key-positions = <9 10 11>; bindings = <&kp ESC>; layers = <DEF_L>; };
         ret { key-positions = <14 15 16>; bindings = <&kp RET>; layers = <DEF_L>; };
 
+        slsh { key-positions = <23 24>; bindings = <&kp FSLH>; layers = <DEF_L>; };
+
         lf_arr { key-positions = <5 6>;   bindings = <&lf_arr>; layers = <NUM_L>; };
         ls_arr { key-positions = <6 7>;   bindings = <&ls_arr>; layers = <NUM_L>; };
         rf_arr { key-positions = <14 15>; bindings = <&rf_arr>; layers = <NUM_L>; };
@@ -129,8 +131,8 @@
 
         default_layer {
             bindings = <
-                              &kp _L       &kp _D        &kp _W          &kp _B        &kp _K           &kp _F          &kp _O       &kp _U
-                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hsl LSHFT _S   &kp _G        &kp _Y           &hsr RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
+                              &kp _L       &kp _D        &kp _W          &kp _B        &kp _Y           &kp _F          &kp _O       &kp _U
+                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hsl LSHFT _S   &kp _G        &kp _K           &hsr RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
                 &kp _J        &kp _X       &kp _M        &kp _C                                         &kp _P          &kp COMMA    &kp DOT      &kp SQT
                                                       &lt NAV_L SPACE &lt MED_L TAB &lt SYM_L RET  &lt NUM_L BSPC
             >;
