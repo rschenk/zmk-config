@@ -30,6 +30,11 @@
 
 // &lt { flavor = "tap-preferred"; };
 
+&sk {  // sticky-key config
+    release-after-ms = <900>;  // release after 0.6s
+    quick-release;             // no double capitalization when rolling keys
+};
+
 / {
     behaviors {
         hsl: homerow_shift_left {
@@ -132,16 +137,16 @@
         default_layer {
             bindings = <
                               &kp _L       &kp _D        &kp _W          &kp _B        &kp _Y           &kp _F          &kp _O       &kp _U
-                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hsl LSHFT _S   &kp _G        &kp _K           &hsr RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
+                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hml LSHFT _S   &kp _G        &kp _K           &hml RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
                 &kp _J        &kp _X       &kp _M        &kp _C                                         &kp _P          &kp COMMA    &kp DOT      &kp SQT
-                                                      &lt NAV_L SPACE &lt MED_L TAB &lt SYM_L RET  &lt NUM_L BSPC
+                                                      &lt NAV_L SPACE &lt MED_L TAB    &sk LSHFT        &mo NUM_L
             >;
         };
 
         nav_layer {
             bindings = <
                             &trans      &kp _COLON   &trans          &trans       &trans           &trans         &trans   &trans
-                &kp LCTRL   &kp LALT    &kp LCMD     &hml LSHFT TAB  &trans       &kp LEFT         &kp DOWN       &kp UP   &kp RIGHT  &trans
+                &kp LCTRL   &kp LALT    &kp LCMD     &hml LSHFT TAB  &trans       &kp LEFT         &kp DOWN       &kp UP   &kp RIGHT  &kp BSPC
                 &kp LG(_Z)  &kp LG(_X)  &kp LG(_C)   &kp LG(_V)                                    &trans         &trans   &trans     &kp FSLH
                                                      &trans          &trans       &trans           &trans
             >;
