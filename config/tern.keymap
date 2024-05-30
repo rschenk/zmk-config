@@ -23,9 +23,9 @@
 #define KEYS_T 26 27 28 29
 
 #define DEF_L 0
-#define NAV_L 1
-#define NUM_L 2
-#define SYM_L 3
+#define SYM_L 1
+#define NAV_L 2
+#define NUM_L 3
 #define MED_L 4
 
 // &lt { flavor = "tap-preferred"; };
@@ -37,30 +37,6 @@
 
 / {
     behaviors {
-        hsl: homerow_shift_left {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <180>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <80>; // the greater the value, the harder it will be to invoke the hold behavior
-            bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <KEYS_R KEYS_T>;
-            hold-trigger-on-release;             // delay positional check until key-release
-        };
-
-        hsr: homerow_shift_right {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <180>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <80>; // the greater the value, the harder it will be to invoke the hold behavior
-            bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <KEYS_L KEYS_T>;
-            hold-trigger-on-release;             // delay positional check until key-release
-        };
-
         hml: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -83,6 +59,22 @@
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
             hold-trigger-on-release;             // delay positional check until key-release
+        };
+
+        cmma_slsh: comma_slash {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp FSLH>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            keep-mods = <(MOD_RSFT)>;
+        };
+
+        dot_qmrk: dot_question_mark {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp PERIOD>, <&kp QMARK>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            keep-mods = <(MOD_RSFT)>;
         };
     };
 
@@ -109,14 +101,22 @@
         esc { key-positions = <9 10 11>; bindings = <&kp ESC>; layers = <DEF_L>; };
         ret { key-positions = <14 15 16>; bindings = <&kp RET>; layers = <DEF_L>; };
 
-        slsh { key-positions = <23 24>; bindings = <&kp FSLH>; layers = <DEF_L>; };
+        // slsh { key-positions = <23 24>; bindings = <&kp FSLH>; layers = <DEF_L>; };
 
-        lf_arr { key-positions = <5 6>;   bindings = <&lf_arr>; layers = <NUM_L>; };
-        ls_arr { key-positions = <6 7>;   bindings = <&ls_arr>; layers = <NUM_L>; };
-        rf_arr { key-positions = <14 15>; bindings = <&rf_arr>; layers = <NUM_L>; };
-        rs_arr { key-positions = <15 16>; bindings = <&rs_arr>; layers = <NUM_L>; };
-        expipe { key-positions = <19 20>; bindings = <&expipe>; layers = <NUM_L>; };
-        eextag { key-positions = <23 24>; bindings = <&eextag>; layers = <NUM_L>; };
+        // lf_arr { key-positions = <5 6>;   bindings = <&lf_arr>; layers = <NUM_L>; };
+        // ls_arr { key-positions = <6 7>;   bindings = <&ls_arr>; layers = <NUM_L>; };
+        // rf_arr { key-positions = <14 15>; bindings = <&rf_arr>; layers = <NUM_L>; };
+        // rs_arr { key-positions = <15 16>; bindings = <&rs_arr>; layers = <NUM_L>; };
+        // expipe { key-positions = <19 20>; bindings = <&expipe>; layers = <NUM_L>; };
+        // eextag { key-positions = <23 24>; bindings = <&eextag>; layers = <NUM_L>; };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <SYM_L NAV_L>;
+            then-layer = <NUM_L>;
+        };
     };
 
     macros {
@@ -138,8 +138,17 @@
             bindings = <
                               &kp _L       &kp _D        &kp _W          &kp _B        &kp _Y           &kp _F          &kp _O       &kp _U
                 &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hml LSHFT _S   &kp _G        &kp _K           &hml RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
-                &kp _J        &kp _X       &kp _M        &kp _C                                         &kp _P          &kp COMMA    &kp DOT      &kp SQT
-                                                      &lt NAV_L SPACE &lt MED_L TAB    &sk LSHFT        &mo NUM_L
+                &kp _J        &kp _X       &kp _M        &kp _C                                         &kp _P          &cmma_slsh   &dot_qmrk    &kp SQT
+                                                      &lt NAV_L SPACE &lt MED_L TAB    &sk LSHFT        &mo SYM_L
+            >;
+        };
+
+        sym_layer {
+            bindings = <
+                           &kp HASH   &kp PRCNT   &kp AT          &kp PLUS      &kp TILDE       &trans         &kp STAR    &trans
+                &kp _COLON &kp EXCL   &kp EQUAL   &kp UNDER       &kp PIPE      &kp BSLH        &kp RSHFT      &kp RCMD    &kp RALT   &kp RCTRL
+                &kp AMPS   &kp CARET  &kp DLLR    &kp MINUS                                     &kp FSLH       &kp LT      &kp GT     &kp GRAVE
+                                                  &trans          &trans        &trans          &trans
             >;
         };
 
@@ -154,19 +163,10 @@
 
         num_layer {
             bindings = <
-                           &kp N7     &kp N8      &kp N9          &kp BSLH      &trans          &trans         &trans      &trans
-                &kp _SEMI  &kp N4     &kp N5      &kp N6          &kp EQUAL     &trans          &kp RSHFT      &kp RCMD    &kp RALT   &kp RCTRL
-                &kp GRAVE  &kp N1     &kp N2      &kp N3                                        &trans         &trans      &trans     &kp FSLH
-                                                  &kp N0          &kp MINUS     &trans          &trans
-            >;
-        };
-
-        sym_layer {
-            bindings = <
-                           &kp LS(N7) &kp LS(N8)  &kp LS(N9)      &kp PIPE      &trans          &trans         &trans      &trans
-                &kp _COLON &kp LS(N4) &kp LS(N5)  &kp LS(N6)      &kp PLUS      &trans          &kp RSHFT      &kp RCMD    &kp RALT   &kp RCTRL
-                &kp TILDE  &kp LS(N1) &kp LS(N2)  &kp LS(N3)                                    &trans         &trans      &trans     &trans
-                                                  &kp LS(N0)      &kp UNDER     &trans          &trans
+                           &kp N7     &kp N8      &kp N9          &trans        &trans          &trans         &trans      &trans
+                &kp _SEMI  &kp N4     &kp N5      &kp N6          &kp N0        &trans          &kp RSHFT      &kp RCMD    &kp RALT   &kp RCTRL
+                &trans     &kp N1     &kp N2      &kp N3                                        &kp FSLH       &kp COMMA   &kp PERIOD &kp DQT 
+                                                  &trans          &trans        &trans          &trans
             >;
         };
 
