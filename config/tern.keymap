@@ -27,6 +27,15 @@
 #define NAV_L 2
 #define NUM_L 3
 
+// How long a key must be pressed to trigger Hold behavior
+#define HRM_TERM 280
+// If you press a tapped hold-tap again within quick-tap-ms milliseconds of the
+// first press, it will always trigger the tap behavior
+#define HRM_QUICK_TAP 175
+// This effectively disables the hold-tap when typing quickly. As a rule of
+// thumb, you want to set it to at least 10500/x where x is your (relaxed) WPM
+#define HRM_IDLE (10500 / 50)
+
 // &lt { flavor = "tap-preferred"; };
 
 &sk {  // sticky-key config
@@ -40,9 +49,9 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>; // the greater the value, the harder it will be to invoke the hold behavior
-            require-prior-idle-ms = <190>;
+            tapping-term-ms = <HRM_TERM>;
+            quick-tap-ms = <HRM_QUICK_TAP>;
+            require-prior-idle-ms = <HRM_IDLE>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_R KEYS_T>;
             hold-trigger-on-release;             // delay positional check until key-release
@@ -52,9 +61,9 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>; // the greater the value, the harder it will be to invoke the hold behavior
-            require-prior-idle-ms = <190>;
+            tapping-term-ms = <HRM_TERM>;
+            quick-tap-ms = <HRM_QUICK_TAP>;
+            require-prior-idle-ms = <HRM_IDLE>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
             hold-trigger-on-release;             // delay positional check until key-release
