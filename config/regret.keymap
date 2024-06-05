@@ -94,8 +94,6 @@
     combos {
         compatible = "zmk,combos";
 
-        q { key-positions = <2 3>;   bindings = <&kp _Q>; layers = <DEF_L>; timeout-ms = <75>; };
-
         vlbkt { key-positions = <1 11>; bindings = <&kp LBKT>; };
         vlpar { key-positions = <2 12>; bindings = <&kp LPAR>; };
         vlbrc { key-positions = <3 13>; bindings = <&kp LBRC>; };
@@ -134,7 +132,7 @@
 
         default_layer {
             bindings = <
-                &kp _B        &kp _L       &kp _D        &kp _W          &kp _B        &kp _Z           &kp _F          &kp _O       &kp _U       &kp SQT
+                &kp _Q        &kp _L       &kp _D        &kp _W          &kp _B        &kp _Z           &kp _F          &kp _O       &kp _U       &kp SQT
                 &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hml LSHFT _S   &kp _G        &kp _Y           &hml RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
                 &kp _J        &kp _X       &kp _M        &kp _C          &kp _V        &kp _K           &kp _P          &cmma_slsh   &dot_qmrk    &kp FSLH
                                                          &mo NAV_L       &kp SPACE     &sk LSHFT        &mo SYM_L
@@ -143,9 +141,9 @@
 
         sym_layer {
             bindings = <
-                &trans     &kp HASH   &kp PRCNT   &kp AT          &kp PLUS      &kp TILDE       &trans         &kp STAR    &trans     &trans
+                &trans     &kp HASH   &kp PRCNT   &kp AT          &kp PLUS      &kp TILDE       &trans         &kp STAR    &trans     &kp GRAVE
                 &kp _COLON &kp EXCL   &kp EQUAL   &kp UNDER       &kp PIPE      &kp BSLH        &kp RSHFT      &kp RCMD    &kp RALT   &kp RCTRL
-                &kp AMPS   &kp CARET  &kp DLLR    &kp MINUS       &trans        &trans          &kp FSLH       &kp LT      &kp GT     &kp GRAVE
+                &kp AMPS   &kp CARET  &kp DLLR    &kp MINUS       &trans        &trans          &kp FSLH       &kp LT      &kp GT     &trans
                                                   &trans          &trans        &trans          &trans
             >;
         };
@@ -154,16 +152,16 @@
             bindings = <
                 &trans      &trans      &kp _COLON   &trans          &rgb_ug RGB_TOG &bootloader   &trans         &trans      &trans     &trans
                 &kp LCTRL   &kp LALT    &kp LCMD     &hml LSHFT TAB  &kp C_VOL_UP    &kp LEFT      &kp DOWN       &kp UP      &kp RIGHT  &kp BSPC
-                &kp LG(_Z)  &kp LG(_X)  &kp LG(_C)   &kp LG(_V)      &kp C_VOL_DN    &trans        &kp C_PP       &kp C_PREV  &kp C_NEXT &kp FSLH
+                &kp LG(_Z)  &kp LG(_X)  &kp LG(_C)   &kp LG(_V)      &kp C_VOL_DN    &trans        &kp C_PP       &kp C_PREV  &kp C_NEXT &trans
                                                      &trans          &trans          &trans        &trans
             >;
         };
 
         num_layer {
             bindings = <
-                &trans     &kp N7     &kp N8      &kp N9          &trans        &trans          &trans         &trans      &trans     &trans
+                &trans     &kp N7     &kp N8      &kp N9          &trans        &trans          &trans         &trans      &trans     &kp DQT
                 &kp _SEMI  &kp N4     &kp N5      &kp N6          &kp N0        &trans          &kp RSHFT      &kp RCMD    &kp RALT   &kp RCTRL
-                &trans     &kp N1     &kp N2      &kp N3          &trans        &trans          &kp FSLH       &kp COMMA   &kp PERIOD &kp DQT
+                &trans     &kp N1     &kp N2      &kp N3          &trans        &trans          &kp FSLH       &kp COMMA   &kp PERIOD &trans
                                                   &trans          &trans        &trans          &trans
             >;
         };
