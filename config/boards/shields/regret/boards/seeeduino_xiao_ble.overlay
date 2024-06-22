@@ -1,4 +1,4 @@
-#include <dt-bindings/led/led.h>
+/* Shift register */
 
 &spi2_default {
     group1 {
@@ -14,6 +14,8 @@
     };
 };
 
+
+/* LED underglow */
 
 #include <dt-bindings/led/led.h>
 
@@ -48,7 +50,7 @@
     spi-max-frequency = <4000000>;
 
     /* WS2812 */
-    chain-length = <10>; /* number of LEDs */
+    chain-length = <11>; /* number of LEDs */
     spi-one-frame = <0x70>;
     spi-zero-frame = <0x40>;
     color-mapping = <LED_COLOR_ID_GREEN
