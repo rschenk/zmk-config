@@ -1,5 +1,5 @@
  /*
- * Key bindings for mapping Colemak DH Matrix in the OS
+ * Key bindings for mapping Vallium Layout in the OS
  */
 
 #pragma once

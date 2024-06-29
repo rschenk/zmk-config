@@ -31,6 +31,8 @@
 #define NUM_L 4
 #define SYS_L 5
 
+#define NON_SYS_LAYERS DEF_L HRM_L SYM_L NAV_L NUM_L
+
 // How long a key must be pressed to trigger Hold behavior
 #define HRM_TERM 280
 // If you press a tapped hold-tap again within quick-tap-ms milliseconds of the
@@ -93,6 +95,14 @@
             tapping-term-ms = <200>;
             bindings = <&none>, <&bootloader>;
         };
+
+        swap: swapper {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&kt LCMD>, <&kp TAB>, <&kt LCMD>;
+            // 0 is Q, 32 is shift
+            ignored-key-positions = <0 32>;
+        };
     };
 
     /* Key positions
@@ -104,12 +114,12 @@
     combos {
         compatible = "zmk,combos";
 
-        vlbkt { key-positions = <1 11>; bindings = <&kp LBKT>; };
-        vlpar { key-positions = <2 12>; bindings = <&kp LPAR>; };
-        vlbrc { key-positions = <3 13>; bindings = <&kp LBRC>; };
-        vrbrc { key-positions = <6 16>; bindings = <&kp RBRC>; };
-        vrpar { key-positions = <7 17>; bindings = <&kp RPAR>; };
-        vrbkt { key-positions = <8 18>; bindings = <&kp RBKT>; };
+        vlbkt { key-positions = <1 11>; bindings = <&kp LBKT>; layers = <NON_SYS_LAYERS>; };
+        vlpar { key-positions = <2 12>; bindings = <&kp LPAR>; layers = <NON_SYS_LAYERS>; };
+        vlbrc { key-positions = <3 13>; bindings = <&kp LBRC>; layers = <NON_SYS_LAYERS>; };
+        vrbrc { key-positions = <6 16>; bindings = <&kp RBRC>; layers = <NON_SYS_LAYERS>; };
+        vrpar { key-positions = <7 17>; bindings = <&kp RPAR>; layers = <NON_SYS_LAYERS>; };
+        vrbkt { key-positions = <8 18>; bindings = <&kp RBKT>; layers = <NON_SYS_LAYERS>; };
 
         cw  { key-positions = <20 29>; bindings = <&kp CAPSLOCK>; layers = <DEF_L>; timeout-ms = <100>; };
 
@@ -177,7 +187,7 @@
 
         nav_layer {
             bindings = <
-                &trans      &trans      &trans       &trans          &kp TAB         &trans   &trans         &trans      &trans     &trans
+                &trans      &swap       &trans       &trans          &kp TAB         &trans   &trans         &trans      &trans     &trans
                 &sk LCTRL   &sk LALT    &sk LCMD     &sk LSHFT       &kp BSPC        &kp LEFT &kp DOWN       &kp UP      &kp RIGHT  &none
                 &kp LG(_Z)  &kp LG(_X)  &kp LG(_C)   &kp LG(_V)      &kp RET         &kp RET  &kp BSPC       &kp TAB     &trans     &trans
                                                      &trans          &trans          &trans   &trans
@@ -187,8 +197,8 @@
         num_layer {
             bindings = <
                 &trans     &kp N7     &kp N8      &kp N9          &trans        &trans          &trans         &trans      &trans     &kp DQT
-                &kp _SEMI  &kp N4     &kp N5      &kp N6          &kp N0        &trans          &sk RSHFT      &sk RCMD    &sk RALT   &sk RCTRL
-                &trans     &kp N1     &kp N2      &kp N3          &trans        &trans          &kp FSLH       &kp COMMA   &kp PERIOD &trans
+                &kp _SEMI  &kp N1     &kp N2      &kp N3          &kp N0        &trans          &sk RSHFT      &sk RCMD    &sk RALT   &sk RCTRL
+                &trans     &kp N4     &kp N5      &kp N6          &trans        &trans          &kp FSLH       &kp COMMA   &kp PERIOD &trans
                                                   &trans          &trans        &trans          &trans
             >;
         };

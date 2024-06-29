@@ -23,9 +23,11 @@
 #define KEYS_T 26 27 28 29
 
 #define DEF_L 0
-#define SYM_L 1
-#define NAV_L 2
-#define NUM_L 3
+#define HRM_L 1
+#define SYM_L 2
+#define NAV_L 3
+#define NUM_L 4
+#define SYS_L 5
 
 // How long a key must be pressed to trigger Hold behavior
 #define HRM_TERM 280
@@ -91,6 +93,14 @@
             tapping-term-ms = <200>;
             bindings = <&none>, <&bootloader>;
         };
+
+        swap: swapper {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&kt LCMD>, <&kp TAB>, <&kt LCMD>;
+            // 1+2 are the Q combo, 28 is shift
+            ignored-key-positions = <1 2 28>;
+        };
     };
 
     /* Key positions
@@ -101,7 +111,7 @@
     combos {
         compatible = "zmk,combos";
         v { key-positions = <20 21>; bindings = <&kp _V>; layers = <DEF_L>; timeout-ms = <200>; };
-        q { key-positions = <1 2>;   bindings = <&kp _Q>; layers = <DEF_L>; timeout-ms = <75>; };
+        q { key-positions = <1 2>;   bindings = <&kp _Q>; layers = <DEF_L NAV_L>; timeout-ms = <75>; };
         z { key-positions = <19 20>; bindings = <&kp _Z>; layers = <DEF_L>; timeout-ms = <200>; };
 
         vlbkt { key-positions = <0 9>;  bindings = <&kp LBKT>; };
@@ -120,12 +130,8 @@
 
         // slsh { key-positions = <23 24>; bindings = <&kp FSLH>; layers = <DEF_L>; };
 
-        // lf_arr { key-positions = <5 6>;   bindings = <&lf_arr>; layers = <NUM_L>; };
-        // ls_arr { key-positions = <6 7>;   bindings = <&ls_arr>; layers = <NUM_L>; };
-        // rf_arr { key-positions = <14 15>; bindings = <&rf_arr>; layers = <NUM_L>; };
-        // rs_arr { key-positions = <15 16>; bindings = <&rs_arr>; layers = <NUM_L>; };
-        // expipe { key-positions = <19 20>; bindings = <&expipe>; layers = <NUM_L>; };
-        // eextag { key-positions = <23 24>; bindings = <&eextag>; layers = <NUM_L>; };
+        /* Activate system layer on inner thumb press */
+        sys { key-positions = <27 28>; bindings = <&mo SYS_L>; require-prior-idle-ms = <HRM_IDLE>; };
     };
 
     conditional_layers {
@@ -154,16 +160,26 @@
         default_layer {
             bindings = <
                               &kp _L       &kp _D        &kp _W          &kp _B        &kp _Y           &kp _F          &kp _O       &kp _U
-                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hml LSHFT _S   &kp _G        &kp _K           &hml RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
+                &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _K           &kp _H          &kp _E       &kp _I       &kp _A
                 &kp _J        &kp _X       &kp _M        &kp _C                                         &kp _P          &cmma_slsh   &dot_qmrk    &kp SQT
                                                          &mo NAV_L       &kp SPACE     &sk LSHFT        &mo SYM_L
+            >;
+        };
+
+        /* The idea here is to activate this when using Illustrator/Photoshop */
+        homerow_mods_layer {
+            bindings = <
+                              &trans       &trans        &trans          &trans        &trans           &trans          &trans       &trans
+                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hml LSHFT _S   &kp _G        &kp _K           &hml RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
+                &trans        &trans       &trans        &trans                                         &trans          &trans       &trans       &trans
+                                                         &trans          &trans        &trans           &trans
             >;
         };
 
         sym_layer {
             bindings = <
                            &kp HASH   &kp PRCNT   &kp AT          &kp PLUS      &kp TILDE       &trans         &kp STAR    &trans
-                &kp _COLON &kp EXCL   &kp EQUAL   &kp UNDER       &kp PIPE      &kp BSLH        &kp RSHFT      &kp RCMD    &kp RALT   &kp RCTRL
+                &kp _COLON &kp EXCL   &kp EQUAL   &kp UNDER       &kp PIPE      &kp BSLH        &sk RSHFT      &sk RCMD    &sk RALT   &sk RCTRL
                 &kp AMPS   &kp CARET  &kp DLLR    &kp MINUS                                     &kp FSLH       &kp LT      &kp GT     &kp GRAVE
                                                   &trans          &trans        &trans          &trans
             >;
@@ -171,8 +187,8 @@
 
         nav_layer {
             bindings = <
-                            &trans      &kp _COLON   &trans          &kp C_VOL_UP &td_boot      &kp C_PP       &kp C_PREV  &kp C_NEXT
-                &kp LCTRL   &kp LALT    &kp LCMD     &hml LSHFT TAB  &kp C_VOL_DN &kp LEFT      &kp DOWN       &kp UP      &kp RIGHT  &trans
+                            &swap       &trans       &trans          &kp BSPC     &trans        &trans         &trans      &trans
+                &sk LCTRL   &sk LALT    &sk LCMD     &sk LSHFT       &kp RET      &kp LEFT      &kp DOWN       &kp UP      &kp RIGHT  &trans
                 &kp LG(_Z)  &kp LG(_X)  &kp LG(_C)   &kp LG(_V)                                 &kp BSPC       &kp TAB     &trans     &kp FSLH
                                                      &trans          &trans       &trans        &trans
             >;
@@ -180,10 +196,19 @@
 
         num_layer {
             bindings = <
-                           &kp N7     &kp N8      &kp N9          &trans        &trans          &trans         &trans      &trans
-                &kp _SEMI  &kp N4     &kp N5      &kp N6          &kp N0        &trans          &kp RSHFT      &kp RCMD    &kp RALT   &kp RCTRL
-                &trans     &kp N1     &kp N2      &kp N3                                        &kp FSLH       &kp COMMA   &kp PERIOD &kp DQT 
-                                                  &trans          &trans        &trans          &trans
+                           &kp N7     &kp N8      &kp N9   &kp PLUS      &trans          &trans         &trans      &trans
+                &kp _SEMI  &kp N1     &kp N2      &kp N3   &kp N0        &trans          &sk RSHFT      &sk RCMD    &sk RALT   &sk RCTRL
+                &kp AMPS   &kp N4     &kp N5      &kp N6                                 &kp FSLH       &kp COMMA   &kp PERIOD &kp DQT 
+                                                  &trans   &trans        &trans          &trans
+            >;
+        };
+
+        system_layer {
+            bindings = <
+                           &td_boot   &tog HRM_L &none     &none          &none           &none           &none        &none
+                &kp LCTRL  &kp LALT   &kp LCMD   &kp LSHFT &none          &kp C_PREV      &kp C_VOL_DN    &kp C_VOL_UP &kp C_NEXT &none
+                &none      &none      &none      &none                                    &kp C_PP        &none        &none      &none
+                                                 &trans    &trans         &trans          &trans
             >;
         };
     };
