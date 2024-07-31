@@ -38,6 +38,9 @@
 // thumb, you want to set it to at least 10500/x where x is your (relaxed) WPM
 #define HRM_IDLE (10500 / 50)
 
+// Not-so-sticky key, see nk behavior def below
+#define SK(KEY) &nk KEY KEY
+
 // &lt { flavor = "tap-preferred"; };
 
 &sk {  // sticky-key config
@@ -69,6 +72,17 @@
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
             hold-trigger-on-release;             // delay positional check until key-release
+        };
+
+        // Sticky key on tap, normal key on hold
+        // Useful for modifier-clicking without the modifier remaining active
+        // like in drawing applications
+        nk: not_so_sticky_key {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping_term_ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&sk>;
         };
 
         cmma_slsh: comma_slash {
@@ -162,7 +176,7 @@
                               &kp _L       &kp _D        &kp _W          &kp _B        &kp _Y           &kp _F          &kp _O       &kp _U
                 &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _K           &kp _H          &kp _E       &kp _I       &kp _A
                 &kp _J        &kp _X       &kp _M        &kp _C                                         &kp _P          &cmma_slsh   &dot_qmrk    &kp SQT
-                                                         &mo NAV_L       &kp SPACE     &sk LSHFT        &mo SYM_L
+                                                         &mo NAV_L       &kp SPACE     SK(LSHFT)        &mo SYM_L
             >;
         };
 

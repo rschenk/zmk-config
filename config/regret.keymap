@@ -41,10 +41,16 @@
 // This effectively disables the hold-tap when typing quickly. As a rule of
 // thumb, you want to set it to at least 10500/x where x is your (relaxed) WPM
 #define HRM_IDLE (10500 / 50)
+#define COMBO_IDLE HRM_IDLE
+
+#define STICKY_KEY_TIMEOUT 1000
+
+// Not-so-sticky key, see nk behavior def below
+#define SK(KEY) &nk KEY KEY
 
 &sk {  // sticky-key config
-    release-after-ms = <900>;  // release after 0.6s
-    quick-release;             // no double capitalization when rolling keys
+    release-after-ms = <STICKY_KEY_TIMEOUT>;
+    quick-release;
 };
 
 / {
@@ -114,24 +120,24 @@
     combos {
         compatible = "zmk,combos";
 
-        vlbkt { key-positions = <1 11>; bindings = <&kp LBKT>; layers = <NON_SYS_LAYERS>; };
-        vlpar { key-positions = <2 12>; bindings = <&kp LPAR>; layers = <NON_SYS_LAYERS>; };
-        vlbrc { key-positions = <3 13>; bindings = <&kp LBRC>; layers = <NON_SYS_LAYERS>; };
-        vrbrc { key-positions = <6 16>; bindings = <&kp RBRC>; layers = <NON_SYS_LAYERS>; };
-        vrpar { key-positions = <7 17>; bindings = <&kp RPAR>; layers = <NON_SYS_LAYERS>; };
-        vrbkt { key-positions = <8 18>; bindings = <&kp RBKT>; layers = <NON_SYS_LAYERS>; };
+        vlbkt { key-positions = <1 11>; bindings = <&kp LBKT>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vlpar { key-positions = <2 12>; bindings = <&kp LPAR>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vlbrc { key-positions = <3 13>; bindings = <&kp LBRC>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vrbrc { key-positions = <6 16>; bindings = <&kp RBRC>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vrpar { key-positions = <7 17>; bindings = <&kp RPAR>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vrbkt { key-positions = <8 18>; bindings = <&kp RBKT>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
 
         cw  { key-positions = <20 29>; bindings = <&kp CAPSLOCK>; layers = <DEF_L>; timeout-ms = <100>; };
 
-        esc { key-positions = <1 2 3>; bindings = <&kp ESC>; layers = <DEF_L HRM_L>; };
-        ret { key-positions = <6 7 8>; bindings = <&kp RET>; layers = <DEF_L HRM_L>; };
-        tab { key-positions = <21 22 23>; bindings = <&kp TAB>; layers = <DEF_L HRM_L>; };
-        bsp { key-positions = <26 27 28>; bindings = <&kp BSPC>; layers = <DEF_L HRM_L>; };
+        esc { key-positions = <11 12 13>; bindings = <&kp ESC>; layers = <DEF_L HRM_L>; };
+        ret { key-positions = <16 17 18>; bindings = <&kp RET>; layers = <DEF_L HRM_L>; };
+        // tab { key-positions = <21 22 23>; bindings = <&kp TAB>; layers = <DEF_L HRM_L>; };
+        // bsp { key-positions = <26 27 28>; bindings = <&kp BSPC>; layers = <DEF_L HRM_L>; };
 
         sall { key-positions = <21 22>; bindings = <&kp LG(_A)>; layers = <NAV_L>; };
 
         /* Activate system layer on inner thumb press */
-        sys { key-positions = <31 32>; bindings = <&mo SYS_L>; require-prior-idle-ms = <HRM_IDLE>; };
+        sys { key-positions = <31 32>; bindings = <&mo SYS_L>; require-prior-idle-ms = <COMBO_IDLE>; };
     };
 
     conditional_layers {
@@ -205,10 +211,10 @@
 
         system_layer {
             bindings = <
-                &td_boot   &tog HRM_L &none    &none    &none    &rgb_ug RGB_TOG &none      &none        &none        &none
-                &none      &none      &none    &none    &none    &kp C_PREV      &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT &none
+                &td_boot   &tog HRM_L &none    &none    &none    &rgb_ug RGB_TOG &none        &none        &none      &none
+                &kp LCTRL  &kp LALT   &kp LCMD &kp LSHFT &none   &kp C_PREV      &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT &none
                 &bt BT_CLR &none      &none    &none    &none    &none           &kp C_PP     &none        &none      &none
-                                              &trans   &trans    &trans          &trans
+                                               &trans   &trans    &trans          &trans
             >;
         };
     };
