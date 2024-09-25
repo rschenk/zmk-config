@@ -1,3 +1,6 @@
 [submodule "config/boards/shields/zmk-rgbled-widget"]
 	path = config/boards/shields/zmk-rgbled-widget
 	url = git@github.com:caksoylar/zmk-rgbled-widget.git
+[submodule "zmk-auto-layer"]
+	path = zmk-auto-layer
+	url = git@github.com:urob/zmk-auto-layer.git
