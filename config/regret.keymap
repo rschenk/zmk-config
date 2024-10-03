@@ -175,6 +175,22 @@
       ZMK_MACRO(ls_arr, bindings = <&kp LT &kp MINUS>;)
       ZMK_MACRO(expipe, bindings = <&kp PIPE &kp GT &kp SPACE>;)
       ZMK_MACRO(eextag, bindings = <&kp LT &kp PRCNT &kp EQUAL &kp SPACE &kp SPACE &kp PRCNT &kp GT &kp LEFT &kp LEFT &kp LEFT>;)
+
+        // Cancels the num-word sticky layer, then activates the given layer
+        c_mo: cancel_mo {
+            compatible = "zmk,behavior-macro-one-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <1>;
+            bindings
+                = <&macro_tap &kp K_CANCEL>
+                , <&macro_param_1to1>
+                , <&macro_press &mo MACRO_PLACEHOLDER>
+                , <&macro_pause_for_release>
+                , <&macro_param_1to1>
+                , <&macro_release &mo MACRO_PLACEHOLDER>
+                ;
+        };
     };
 
     keymap {
@@ -225,7 +241,7 @@
                 &kp _SEMI     &kp HASH     &kp PRCNT    &kp AT        &kp PLUS      &kp TILDE &trans        &kp STAR     &trans       &kp GRAVE
                 &hml LCTRL N1 &hml LALT N2 &hml LCMD N3 &hml LSHFT N4 &kp N5        &kp N6    &hmr RSHFT N7 &hmr RCMD N8 &hmr RALT N9 &hmr RCTRL N0
                 &kp AMPS      &trans       &kp DLLR     &kp MINUS     &trans        &trans    &kp BSPC      &kp COMMA    &kp PERIOD   &trans
-                                                        CANCEL        &trans        &trans    CANCEL
+                                                        &c_mo NAV_L   &trans        &trans    &c_mo SYM_L
             >;
         };
 
