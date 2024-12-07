@@ -9,7 +9,7 @@
 
 // Use Vallium layout but map it in the OS
 #ifndef KEYMAP_DRAWER
-#include "keys_vallium.h"
+#include "locales/keys_vallium.h"
 #endif
 
 /* Key positions

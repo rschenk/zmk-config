@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+cd /workspaces/zmk/app 
+
+west build \
+  --pristine \
+  --board seeeduino_xiao_ble \
+  -- \
+  -DSHIELD="regret rgbled_adapter" \
+  -DZMK_CONFIG="/workspaces/zmk-config/config" \
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-config/config/boards/shields/zmk-rgbled-widget;/workspaces/zmk-config/zmk-auto-layer"
+
+mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/regret.uf2
+ls -la /workspaces/zmk-config/dist/regret.uf2
