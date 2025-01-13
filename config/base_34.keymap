@@ -87,6 +87,7 @@
             hold-trigger-on-release;             // delay positional check until key-release
         };
 
+        // Make , shift to / was useful on 30 key
         cmma_slsh: comma_slash {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -95,6 +96,7 @@
             keep-mods = <(MOD_RSFT)>;
         };
 
+        // Make . shift to ? was useful on 30 key
         dot_qmrk: dot_question_mark {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -108,6 +110,13 @@
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&none>, <&bootloader>;
+        };
+
+        gn_gns: double_tap_gn_gns_macro {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&gn_macro>, <&gns_macro>;
         };
 
         swap: swapper {
@@ -137,6 +146,8 @@
 
     combos {
         compatible = "zmk,combos";
+
+        gn { key-positions = <13 14>; bindings = <&gn_gns>; layers = <DEF_L>; };
 
         vlbkt { key-positions = <1 11>; bindings = <&kp LBKT>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
         vlpar { key-positions = <2 12>; bindings = <&kp LPAR>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
@@ -175,6 +186,8 @@
       ZMK_MACRO(ls_arr, bindings = <&kp LT &kp MINUS>;)
       ZMK_MACRO(expipe, bindings = <&kp PIPE &kp GT &kp SPACE>;)
       ZMK_MACRO(eextag, bindings = <&kp LT &kp PRCNT &kp EQUAL &kp SPACE &kp SPACE &kp PRCNT &kp GT &kp LEFT &kp LEFT &kp LEFT>;)
+      ZMK_MACRO(gn_macro, bindings = <&kp _G &kp _N>;)
+      ZMK_MACRO(gns_macro, bindings = <&kp _G &kp _N &kp _S>;)
 
         // Cancels the num-word sticky layer, then activates the given layer
         c_mo: cancel_mo {
@@ -202,7 +215,7 @@
         default_layer {
             bindings = <
                 &kp _Q        &kp _L       &kp _D        &kp _W          &kp _B        &kp _Z           &kp _F          &kp _O       &kp _U       &kp SQT
-                &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _Y           &kp _H          &kp _E       &kp _I       &kp _A
+                &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _Y           &kp _H          &kp _A       &kp _E       &kp _I
                 &kp _J        &kp _X       &kp _M        &kp _C          &kp _V        &kp _K           &kp _P          &cmma_slsh   &dot_qmrk    &kp FSLH
                                                          &mo NAV_L       &kp SPACE     &sk LSHFT        &mo SYM_L
             >;

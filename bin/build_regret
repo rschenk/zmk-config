@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd /workspaces/zmk/app 
+cd /workspaces/zmk/app
 
 west build \
   --pristine \

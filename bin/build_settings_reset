@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+cd /workspaces/zmk/app 
+
+west build \
+  --pristine \
+  --board seeeduino_xiao_ble \
+  -- \
+  -DSHIELD=settings_reset &&
+mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/settings_reset_xiao_ble.uf2
+
+west build \
+  --pristine \
+  --board nice_nano_v2 \
+  -- \
+  -DSHIELD=settings_reset &&
+mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/settings_reset_nice_nano_v2.uf2
+
+ls -la /workspaces/zmk-config/dist/settings_reset_*
