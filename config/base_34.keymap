@@ -226,7 +226,7 @@
         homerow_mods_layer {
             bindings = <
                 &trans        &trans       &trans        &trans          &trans        &trans           &trans          &trans       &trans       &trans
-                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hml LSHFT _S   &trans        &trans           &hmr RSHFT _H   &hmr RCMD _E &hmr RALT _I &hmr RCTRL _A
+                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hml LSHFT _S   &trans        &trans           &hmr RSHFT _H   &hmr RCMD _A &hmr RALT _E &hmr RCTRL _I
                 &trans        &trans       &trans        &trans          &trans        &trans           &trans          &trans       &trans       &trans
                                                          &trans          &trans        &trans           &trans
             >;
