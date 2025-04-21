@@ -8,7 +8,7 @@ west build \
   -- \
   -DSHIELD="cradio_dongle" \
   -DZMK_CONFIG="/workspaces/zmk-config/config" \
-  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-auto-layer;/workspaces/zmk-modules/zmk-component-raytac-dongle" &&
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-tri-state;/workspaces/zmk-modules/zmk-auto-layer;/workspaces/zmk-modules/zmk-component-raytac-dongle" &&
 
 mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/cradio_dongle.uf2 &&
 
@@ -18,7 +18,7 @@ west build \
   -- \
   -DSHIELD="cradio_left" \
   -DZMK_CONFIG="/workspaces/zmk-config/config" \
-  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-auto-layer" \
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-tri-state;/workspaces/zmk-modules/zmk-auto-layer" \
   -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n &&
 
 mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/cradio_left.uf2 &&
@@ -29,7 +29,7 @@ west build \
   -- \
   -DSHIELD="cradio_right" \
   -DZMK_CONFIG="/workspaces/zmk-config/config" \
-  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-auto-layer" \
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-tri-state;/workspaces/zmk-modules/zmk-auto-layer" \
   -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n &&
 
 mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/cradio_right.uf2
