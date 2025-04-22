@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: dhruvinsh
       url-base: https://github.com/dhruvinsh
+    - name: rschenk
+      url-base: https://github.com/rschenk
     - name: urob
       url-base: https://github.com/urob
   projects:
@@ -21,6 +23,9 @@ manifest:
       revision: main
     - name: zmk-auto-layer
       remote: urob
+      revision: main
+    - name: zmk-component-raytac-dongle
+      remote: rschenk
       revision: main
   self:
     path: config
