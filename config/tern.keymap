@@ -122,8 +122,8 @@
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&kt LCMD>, <&kp TAB>, <&kt LCMD>;
-            // 1+2 are the Q combo, 28 is shift
-            ignored-key-positions = <1 2 28>;
+            // 0+1 are the Q combo, 28 is shift
+            ignored-key-positions = <0 1 28>;
         };
 
         #define SMART_NUM &smart_num NUM_L NUM_L
@@ -145,7 +145,7 @@
     combos {
         compatible = "zmk,combos";
         v { key-positions = <20 21>; bindings = <&kp _V>; layers = <DEF_L>; timeout-ms = <200>; };
-        q { key-positions = <1 2>;   bindings = <&kp _Q>; layers = <DEF_L>; timeout-ms = <75>; };
+        q { key-positions = <0 1>;   bindings = <&kp _Q>; layers = <DEF_L>; timeout-ms = <75>; require-prior-idle-ms = <75>; };
         z { key-positions = <19 20>; bindings = <&kp _Z>; layers = <DEF_L>; timeout-ms = <200>; };
 
         vlbkt { key-positions = <0 9>;  bindings = <&kp LBKT>; require-prior-idle-ms = <COMBO_IDLE>; };
@@ -159,8 +159,8 @@
 
         esc { key-positions = <9 10 11>; bindings = <&kp ESC>; };
         ret { key-positions = <14 15 16>; bindings = <&kp RET>; };
-        bsp  { key-positions = <22 23>; bindings = <&kp BSPC>;  require-prior-idle-ms = <COMBO_IDLE>;};
-        semi { key-positions = <23 24>; bindings = <&kp _SEMI>; require-prior-idle-ms = <COMBO_IDLE>;};
+        bsp  { key-positions = <22 23>; bindings = <&kp BSPC>;  require-prior-idle-ms = <COMBO_IDLE>; };
+        semi { key-positions = <23 24>; bindings = <&kp _SEMI>; require-prior-idle-ms = <COMBO_IDLE>; };
 
         sall {key-positions = <19 20>; bindings = <&kp LG(_A)>; layers = <NAV_L>; };
 
