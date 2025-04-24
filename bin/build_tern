@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+cd /workspaces/zmk/app
+
+west build \
+  --pristine \
+  --board seeeduino_xiao_rp2040 \
+  -- \
+  -DSHIELD="tern" \
+  -DZMK_CONFIG="/workspaces/zmk-config/config" \
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-keyboard-tern;/workspaces/zmk-modules/zmk-tri-state;/workspaces/zmk-modules/zmk-auto-layer"
+
+mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/tern.uf2
+ls -la /workspaces/zmk-config/dist/tern.uf2

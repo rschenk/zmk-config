@@ -10,6 +10,13 @@ mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/settings_reset_xiao_ble.uf2
 
 west build \
   --pristine \
+  --board seeeduino_xiao_rp2040 \
+  -- \
+  -DSHIELD=settings_reset &&
+mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/settings_reset_xiao_rp2040.uf2
+
+west build \
+  --pristine \
   --board nice_nano_v2 \
   -- \
   -DSHIELD=settings_reset &&
@@ -20,7 +27,8 @@ west build \
   --board raytac_mdbt50q_rx \
   -- \
   -DSHIELD=settings_reset \
-  -DZMK_CONFIG="/workspaces/zmk-config/config" &&
+  -DZMK_CONFIG="/workspaces/zmk-config/config" \
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-component-raytac-dongle" &&
 mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/settings_reset_raytac_mdbt50q_rx.uf2
 
 ls -la /workspaces/zmk-config/dist/settings_reset_*
