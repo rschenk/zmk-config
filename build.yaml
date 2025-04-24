@@ -14,7 +14,7 @@
 ---
 include:
   - board: seeeduino_xiao_ble
-    shield: regret rgbled_adapter
+    shield: re-gret rgbled_adapter
   - board: raytac_mdbt50q_rx
     shield: cradio_dongle
   - board: nice_nano_v2
