@@ -1,6 +1,0 @@
-if SHIELD_EGRET
-
-config ZMK_KEYBOARD_NAME
-    default "Egret"
-
-endif

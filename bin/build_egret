@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+cd /workspaces/zmk/app
+
+west build \
+  --pristine \
+  --board nice_nano_v2 \
+  -- \
+  -DSHIELD="egret" \
+  -DZMK_CONFIG="/workspaces/zmk-config/config" \
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-keyboard-egret"
+
+mv build/zephyr/zmk.uf2 /workspaces/zmk-config/dist/egret.uf2
+ls -la /workspaces/zmk-config/dist/egret.uf2
