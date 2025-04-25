@@ -35,6 +35,8 @@
 #define NUM_L 4
 #define SYS_L 5
 
+#define NON_SYS_LAYERS DEF_L HRM_L SYM_L NAV_L NUM_L
+
 // How long a key must be pressed to trigger Hold behavior
 #define HRM_TERM 280
 // If you press a tapped hold-tap again within quick-tap-ms milliseconds of the
@@ -148,12 +150,12 @@
         q { key-positions = <0 1>;   bindings = <&kp _Q>; layers = <DEF_L>; timeout-ms = <75>; require-prior-idle-ms = <75>; };
         z { key-positions = <19 20>; bindings = <&kp _Z>; layers = <DEF_L>; timeout-ms = <200>; };
 
-        vlbkt { key-positions = <0 9>;  bindings = <&kp LBKT>; require-prior-idle-ms = <COMBO_IDLE>; };
-        vlpar { key-positions = <1 10>; bindings = <&kp LPAR>; require-prior-idle-ms = <COMBO_IDLE>; };
-        vlbrc { key-positions = <2 11>; bindings = <&kp LBRC>; require-prior-idle-ms = <COMBO_IDLE>; };
-        vrbrc { key-positions = <5 14>; bindings = <&kp RBRC>; require-prior-idle-ms = <COMBO_IDLE>; };
-        vrpar { key-positions = <6 15>; bindings = <&kp RPAR>; require-prior-idle-ms = <COMBO_IDLE>; };
-        vrbkt { key-positions = <7 16>; bindings = <&kp RBKT>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vlbkt { key-positions = <0 9>;  bindings = <&kp LBKT>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vlpar { key-positions = <1 10>; bindings = <&kp LPAR>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vlbrc { key-positions = <2 11>; bindings = <&kp LBRC>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vrbrc { key-positions = <5 14>; bindings = <&kp RBRC>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vrpar { key-positions = <6 15>; bindings = <&kp RPAR>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
+        vrbkt { key-positions = <7 16>; bindings = <&kp RBKT>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
 
         cw  { key-positions = <18 25>; bindings = <&kp CAPSLOCK>; layers = <DEF_L>; timeout-ms = <100>; };
 
@@ -202,6 +204,7 @@
            https://www.reddit.com/r/KeyboardLayouts/comments/15zu2rn/sturdy_vs_nerps/jxjq139/ */
 
         default_layer {
+            display-name = "Base";
             bindings = <
                               &kp _L       &kp _D        &kp _W          &kp _B        &kp _Y           &kp _F          &kp _O       &kp _U
                 &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _K           &kp _H          &kp _A       &kp _E       &kp _I
@@ -212,15 +215,17 @@
 
         /* The idea here is to activate this when using Illustrator/Photoshop */
         homerow_mods_layer {
+            display-name = "Homerow Mods";
             bindings = <
                               &trans       &trans        &trans          &trans        &trans           &trans          &trans       &trans
-                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hml LSHFT _S   &kp _G        &kp _K           &hml RSHFT _H   &hmr RCMD _A &hmr RALT _E &hmr RCTRL _I
+                &hml LCTRL _N &hml LALT _R &hml LCMD _T  &hml LSHFT _S   &trans        &trans           &hml RSHFT _H   &hmr RCMD _A &hmr RALT _E &hmr RCTRL _I
                 &trans        &trans       &trans        &trans                                         &trans          &trans       &trans       &trans
                                                          &trans          &trans        &trans           &trans
             >;
         };
 
         sym_layer {
+            display-name = "Sym";
             bindings = <
                            &kp HASH   &kp PRCNT   &kp AT          &kp PLUS      &kp TILDE       &trans         &kp STAR    &trans     
                 &kp _COLON &kp EXCL   &kp EQUAL   &kp UNDER       &kp PIPE      &kp BSLH        &sk RSHFT      &sk RCMD    &sk RALT   &sk RCTRL
@@ -230,6 +235,7 @@
         };
 
         nav_layer {
+            display-name = "Nav";
             bindings = <
                             &swap       &trans       &trans          &kp BSPC        &trans   &trans         &trans      &trans
                 &sk LCTRL   &sk LALT    &sk LCMD     &sk LSHFT       &kp RET         &kp LEFT &kp DOWN       &kp UP      &kp RIGHT  &none
@@ -238,8 +244,8 @@
             >;
         };
 
-
         num_layer {
+            display-name = "Num";
             bindings = <
                               &kp HASH     &kp PRCNT    &kp AT        &kp PLUS      &kp TILDE &trans        &kp STAR     &trans
                 &hml LCTRL N1 &hml LALT N2 &hml LCMD N3 &hml LSHFT N4 &kp N5        &kp N6    &hmr RSHFT N7 &hmr RCMD N8 &hmr RALT N9 &hmr RCTRL N0
@@ -248,8 +254,8 @@
             >;
         };
 
-
         system_layer {
+            display-name = "System";
             bindings = <
                            &td_boot   &tog HRM_L &none     &none          &none           &none           &none        &none
                 &kp LCTRL  &kp LALT   &kp LCMD   &kp LSHFT &none          &kp C_PREV      &kp C_VOL_DN    &kp C_VOL_UP &kp C_NEXT &none
