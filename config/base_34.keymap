@@ -48,6 +48,7 @@
 // thumb, you want to set it to at least 10500/x where x is your (relaxed) WPM
 #define HRM_IDLE (10500 / 60)
 #define COMBO_IDLE HRM_IDLE
+#define AK_IDLE 300
 
 #define STICKY_KEY_TIMEOUT 1000
 
@@ -116,13 +117,6 @@
             bindings = <&none>, <&bootloader>;
         };
 
-        gn_gns: double_tap_gn_gns_macro {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&gn_macro>, <&gns_macro>;
-        };
-
         swap: swapper {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
@@ -150,8 +144,6 @@
 
     combos {
         compatible = "zmk,combos";
-
-        gn { key-positions = <13 14>; bindings = <&gn_gns>; layers = <DEF_L>; };
 
         vlbkt { key-positions = <1 11>; bindings = <&kp LBKT>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
         vlpar { key-positions = <2 12>; bindings = <&kp LPAR>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
@@ -211,6 +203,17 @@
         };
     };
 
+    ak_h: ak_h {
+        compatible = "zmk,behavior-adaptive-key";
+        #binding-cells = <0>;
+        bindings = <&kp _H>;
+
+        akt_bh { trigger-keys = <_B>; bindings = <&kp _L>; max-prior-idle-ms = <AK_IDLE>; };
+        akt_ih { trigger-keys = <_I>; bindings = <&kp _G>, <&kp _N>; max-prior-idle-ms = <AK_IDLE>; };
+        akt_jh { trigger-keys = <_J>; bindings = <&kp _U>, <&kp _S>, <&kp _T>; max-prior-idle-ms = <AK_IDLE>; };
+        akt_qh { trigger-keys = <_Q>; bindings = <&kp _U>; max-prior-idle-ms = <AK_IDLE>; };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -220,7 +223,7 @@
         default_layer {
             bindings = <
                 &kp _Q        &kp _L       &kp _D        &kp _W          &kp _B        &kp _J           &kp _F          &kp _O       &kp _U       &kp SQT
-                &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _Y           &kp _H          &kp _A       &kp _E       &kp _I
+                &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _Y           &ak_h           &kp _A       &kp _E       &kp _I
                 &kp _Z        &kp _X       &kp _M        &kp _C          &kp _V        &kp _K           &kp _P          &cmma_slsh   &dot_qmrk    &kp FSLH
                                                          &mo NAV_L       &kp SPACE     &sk LSHFT        &mo SYM_L
             >;
