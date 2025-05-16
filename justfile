@@ -18,6 +18,7 @@ _build_single $shield $board $snippet $cmake_args *west_args:
   artifact="${shield:+${shield// /+}-}${board}"
   build_dir="{{ 'build' / '$artifact' }}"
 
+  echo "west_args: {{west_args}}"
   echo "Building $artifact"
   # Nice hack below for doing a multiline script in `devcontainer exec`
   # https://stackoverflow.com/a/58037687

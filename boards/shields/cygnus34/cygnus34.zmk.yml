@@ -1,0 +1,12 @@
+file_format: "1"
+id: cygnus34
+name: Cygnus
+type: shield
+url: https://github.com/juhakaup/keyboards/tree/main/Cygnus%20v1.0
+requires: [pro_micro]
+features:
+  - keys
+  - studio
+siblings:
+  - cygnus34_left
+  - cygnus34_right
