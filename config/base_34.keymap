@@ -50,6 +50,8 @@
 #define COMBO_IDLE HRM_IDLE
 #define AK_IDLE 300
 
+#define COMBO_SLOW 100
+
 #define STICKY_KEY_TIMEOUT 1000
 
 // Exits num-word
@@ -150,7 +152,7 @@
         vrpar { key-positions = <7 17>; bindings = <&kp RPAR>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
         vrbkt { key-positions = <8 18>; bindings = <&kp RBKT>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>; };
 
-        cw   { key-positions = <20 29>; bindings = <&kp CAPSLOCK>; layers = <DEF_L>; timeout-ms = <100>; };
+        cw   { key-positions = <20 29>; bindings = <&kp CAPSLOCK>; layers = <DEF_L>; timeout-ms = <COMBO_SLOW>; };
 
         ret  { key-positions = <16 17 18>; bindings = <&kp RET>; layers = <NON_SYS_LAYERS>; };
         esc  { key-positions = <11 12 13>; bindings = <&kp ESC>; layers = <NON_SYS_LAYERS>; };
@@ -161,7 +163,7 @@
         sall { key-positions = <21 22>; bindings = <&kp LG(_A)>; layers = <NAV_L>; };
 
         /* Activate system layer on inner thumb press */
-        sys { key-positions = <31 32>; bindings = <&mo SYS_L>; require-prior-idle-ms = <COMBO_IDLE>; };
+        sys { key-positions = <31 32>; bindings = <&mo SYS_L>; require-prior-idle-ms = <COMBO_IDLE>; timeout-ms = <COMBO_SLOW>; };
     };
 
     /*
