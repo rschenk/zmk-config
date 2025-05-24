@@ -208,9 +208,8 @@
         #binding-cells = <0>;
         bindings = <&kp _H>;
 
-        akt_bh { trigger-keys = <_B>; bindings = <&kp _L>; max-prior-idle-ms = <AK_IDLE>; };
+        akt_bh { trigger-keys = <_B>; bindings = <&kp _R>; max-prior-idle-ms = <AK_IDLE>; };
         akt_ih { trigger-keys = <_I>; bindings = <&kp _G>, <&kp _N>; max-prior-idle-ms = <AK_IDLE>; };
-        akt_jh { trigger-keys = <_J>; bindings = <&kp _U>, <&kp _S>, <&kp _T>; max-prior-idle-ms = <AK_IDLE>; };
         akt_qh { trigger-keys = <_Q>; bindings = <&kp _U>; max-prior-idle-ms = <AK_IDLE>; };
     };
 
@@ -222,9 +221,9 @@
 
         default_layer {
             bindings = <
-                &kp _Q        &kp _L       &kp _D        &kp _W          &kp _B        &kp _J           &kp _F          &kp _O       &kp _U       &kp SQT
+                &kp _B        &kp _L       &kp _D        &kp _W          &kp _Z        &kp _J           &kp _F          &kp _O       &kp _U       &kp SQT
                 &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _Y           &ak_h           &kp _A       &kp _E       &kp _I
-                &kp _Z        &kp _X       &kp _M        &kp _C          &kp _V        &kp _K           &kp _P          &cmma_slsh   &dot_qmrk    &kp FSLH
+                &kp _Q        &kp _X       &kp _M        &kp _C          &kp _V        &kp _K           &kp _P          &cmma_slsh   &dot_qmrk    &kp FSLH
                                                          &mo NAV_L       &kp SPACE     &sk LSHFT        &mo SYM_L
             >;
         };
@@ -250,7 +249,7 @@
 
         nav_layer {
             bindings = <
-                &trans      &swap       SK_MEH       SK_HYP          &kp TAB         &trans   MEH(N1)        MEH(N2)     MEH(N3)    MEH(N4)
+                &kp _Q      &swap       SK_MEH       SK_HYP          &kp TAB         &trans   MEH(N1)        MEH(N2)     MEH(N3)    MEH(N4)
                 &sk LCTRL   &sk LALT    &sk LCMD     &sk LSHFT       &kp BSPC        &kp LEFT &kp DOWN       &kp UP      &kp RIGHT  &none
                 &kp LG(_Z)  &kp LG(_X)  &kp LG(_C)   &kp LG(_V)      &kp RET         &kp RET  &kp BSPC       &kp TAB     &trans     &trans
                                                      &trans          &trans          &trans   SMART_NUM
