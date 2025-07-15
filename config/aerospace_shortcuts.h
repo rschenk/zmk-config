@@ -23,4 +23,4 @@
 #define AE_WS2   AE_MEH(N2)
 #define AE_WS3   AE_MEH(N3)
 #define AE_WS4   AE_MEH(N4)
-
+#define AE_WS_BF AE_MEH(TAB)   // Workspace back-and-forth

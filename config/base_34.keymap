@@ -259,7 +259,7 @@
 
         nav_layer {
             bindings = <
-                &kp _Q      &swap       &trans       &trans          &kp TAB         &trans   &kp AE_WS1         &kp AE_WS2      &kp AE_WS3     &kp AE_WS4
+                &kp _Q      &swap       &kp AE_WS_BF &trans          &kp TAB         &trans   &kp AE_WS1     &kp AE_WS2  &kp AE_WS3 &kp AE_WS4
                 &sk LCTRL   &sk LALT    &sk LCMD     &sk LSHFT       &kp BSPC        &kp LEFT &kp DOWN       &kp UP      &kp RIGHT  &none
                 &kp LG(_Z)  &kp LG(_X)  &kp LG(_C)   &kp LG(_V)      &kp RET         &kp RET  &kp BSPC       &kp TAB     &trans     &trans
                                                      &trans          &trans          &trans   SMART_NUM
