@@ -102,22 +102,20 @@
             hold-trigger-on-release;             // delay positional check until key-release
         };
 
-        // Make , shift to / was useful on 30 key
-        cmma_slsh: comma_slash {
+        // Make , shift to "
+        cmma_dqt: comma_double_quote {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp COMMA>, <&kp FSLH>;
+            bindings = <&kp COMMA>, <&kp DQT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
-            keep-mods = <(MOD_RSFT)>;
         };
 
-        // Make . shift to ? was useful on 30 key
-        dot_qmrk: dot_question_mark {
+        // Make . shift to ,
+        dot_cmma: dot_comma {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp PERIOD>, <&kp QMARK>;
+            bindings = <&kp PERIOD>, <&kp COMMA>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
-            keep-mods = <(MOD_RSFT)>;
         };
 
         td_boot: double_tap_bootloader {
@@ -226,14 +224,12 @@
     keymap {
         compatible = "zmk,keymap";
 
-        /* Mostly Gallium-v2 but without B on pinky, from:
-           https://www.reddit.com/r/KeyboardLayouts/comments/15zu2rn/sturdy_vs_nerps/jxjq139/ */
-
+        /* Mostly Graphite */
         default_layer {
             bindings = <
-                &kp _B        &kp _L       &kp _D        &kp _W          &kp _Z        &kp _J           &kp _F          &kp _O       &kp _U       &kp SQT
+                &kp _B        &kp _L       &kp _D        &kp _W          &kp _Z        &kp SQT          &kp _F          &kp _O       &kp _U       &kp _J
                 &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _Y           &ak_h           &kp _A       &kp _E       &kp _I
-                &kp _Q        &kp _X       &kp _M        &kp _C          &kp _V        &kp _K           &kp _P          &cmma_slsh   &dot_qmrk    &kp FSLH
+                &kp _Q        &kp _X       &kp _M        &kp _C          &kp _V        &kp _K           &kp _P          &dot_cmma    &cmma_dqt    &kp FSLH
                                                          &mo NAV_L       &lt WIN_L SPACE     &sk LSHFT        &mo SYM_L
             >;
         };
