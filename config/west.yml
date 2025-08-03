@@ -30,6 +30,12 @@ manifest:
     - name: zmk-keyboard-re-gret
       remote: rschenk
       revision: v0.3
+    - name: zmk-keyboard-tern
+      remote: rschenk
+      revision: v0.3
+    - name: zmk-keyboard-egret
+      remote: rschenk
+      revision: main
     - name: zmk-component-raytac-dongle
       remote: rschenk
       revision: v0.3
