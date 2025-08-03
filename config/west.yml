@@ -24,6 +24,9 @@ manifest:
     - name: zmk-auto-layer
       remote: urob
       revision: v0.3
+    - name: zmk-adaptive-key
+      remote: urob
+      revision: v0.3
     - name: zmk-keyboard-re-gret
       remote: rschenk
       revision: v0.3
