@@ -70,7 +70,7 @@
     quick-release;
 };
 
-/* Layer-top is like super tap-preferred */
+/* Layer-tap is like super tap-preferred */
 &lt {
     tapping-term-ms = <HRM_TERM>; // 200 is the default
     require-prior-idle-ms = <HRM_IDLE>;
@@ -110,11 +110,19 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        // Make . shift to ,
-        dot_cmma: dot_comma {
+        // Make double-tapping , produce ," ... not ideal
+        td_cmma_dqt: tapdance_comma_double_quote {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&cmma_dqt>, <&cmma_qt_macro>;
+        };
+
+        // Make . shift to ;
+        dot_scln: dot_scln {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp PERIOD>, <&kp COMMA>;
+            bindings = <&kp PERIOD>, <&kp _SEMI>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -164,25 +172,13 @@
 
         ret  { key-positions = <16 17 18>; bindings = <&kp RET>; layers = <NON_SYS_LAYERS>; };
         esc  { key-positions = <11 12 13>; bindings = <&kp ESC>; layers = <NON_SYS_LAYERS>; };
-        // tab { key-positions = <21 22 23>; bindings = <&kp TAB>; layers = <DEF_L HRM_L>; };
         bsp  { key-positions = <26 27>; bindings = <&kp BSPC>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>;};
-        semi { key-positions = <27 28>; bindings = <&kp _SEMI>; layers = <NON_SYS_LAYERS>; require-prior-idle-ms = <COMBO_IDLE>;};
 
         sall { key-positions = <21 22>; bindings = <&kp LG(_A)>; layers = <NAV_L>; };
 
         /* Activate system layer on inner thumb press */
         sys { key-positions = <31 32>; bindings = <&mo SYS_L>; require-prior-idle-ms = <COMBO_IDLE>; timeout-ms = <COMBO_SLOW>; };
     };
-
-    /*
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <SYM_L NAV_L>;
-            then-layer = <NUM_L>;
-        };
-    };
-    */
 
     macros {
       ZMK_MACRO(rf_arr, bindings = <&kp EQUAL &kp GT>;)
@@ -193,6 +189,8 @@
       ZMK_MACRO(eextag, bindings = <&kp LT &kp PRCNT &kp EQUAL &kp SPACE &kp SPACE &kp PRCNT &kp GT &kp LEFT &kp LEFT &kp LEFT>;)
       ZMK_MACRO(gn_macro, bindings = <&kp _G &kp _N>;)
       ZMK_MACRO(gns_macro, bindings = <&kp _G &kp _N &kp _S>;)
+      ZMK_MACRO(cmma_qt_macro, bindings = <&kp COMMA &kp LS(DQT)>;)
+
 
         // Cancels the num-word sticky layer, then activates the given layer
         c_mo: cancel_mo {
@@ -229,7 +227,7 @@
             bindings = <
                 &kp _B        &kp _L       &kp _D        &kp _W          &kp _Z        &kp SQT          &kp _F          &kp _O       &kp _U       &kp _J
                 &kp _N        &kp _R       &kp _T        &kp _S          &kp _G        &kp _Y           &ak_h           &kp _A       &kp _E       &kp _I
-                &kp _Q        &kp _X       &kp _M        &kp _C          &kp _V        &kp _K           &kp _P          &dot_cmma    &cmma_dqt    &kp FSLH
+                &kp _Q        &kp _X       &kp _M        &kp _C          &kp _V        &kp _K           &kp _P          &td_cmma_dqt &dot_scln    &kp FSLH
                                                          &mo NAV_L       &lt WIN_L SPACE     &sk LSHFT        &mo SYM_L
             >;
         };
